@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EJEMPLO DE PLANETAS CON THREE.JS</title>
+
+    <link rel="stylesheet" media="screen" href="deck/themes/style/swiss.css">
+    <!-- Theme -->
+    <!-- <link rel="stylesheet" href="resources/transitions.css"> -->
+    <!-- <link rel="stylesheet" href="resources/layout.css"> -->
+    <link rel="stylesheet" href="resources/typography.css">
+    <!-- Core and extension CSS files -->
+    <link rel="stylesheet" media="screen" href="deck/core/deck.core.css">
+    <link rel="stylesheet" media="screen" href="deck/extensions/goto/deck.goto.css">
+    <link rel="stylesheet" media="screen" href="deck/extensions/menu/deck.menu.css">
+    <link rel="stylesheet" media="screen" href="deck/extensions/navigation/deck.navigation.css">
+    <link rel="stylesheet" media="screen" href="deck/extensions/status/deck.status.css">
+    <link rel="stylesheet" media="screen" href="deck/extensions/scale/deck.scale.css">
+    <link rel="stylesheet" media="screen" href="deck/themes/transition/horizontal-slide.css">
+    <link rel="stylesheet" media="screen" href="css/custom.css">
+    <link rel="stylesheet" href="js/highlight/styles/monokai-sublime.css">
+    <script src="deck/modernizr.custom.js"></script>
+</head>
+
+<body>
+    <div class="deck-container">
+        <!-- Begin slides. Just make elements with a class of slide. -->
+        <section class="slide" id="uno">
+            <iframe src="iframes/titulo.html" frameborder="0"></iframe>
+            <div class="page-cover">
+                <h1 class="cover-title">Texturizado<small> <br>Three.js</small></h1>
+            </div>
+        </section>
+        <section class="slide" id="slide2">
+            <h2>Qué se quiere lograr...</h2>
+            <ol>
+                <li class="slide">
+                    <h3>Creación de geometrías</h3>
+                </li>
+                <li class="slide">
+                    <h3>Uso de texturas</h3>
+                </li>
+                <li class="slide">
+                    <h3>Iluminación natural</h3>
+                </li>
+                <li class="slide">
+                    <h3>Animación básica</h3>
+                </li>
+            </ol>
+            <img class="slide" src="images/slide2.png" alt="">
+        </section>
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide3">
+            <h2>Texturas</h2>
+            <p>http://planetpixelemporium.com/</p>
+            <iframe class="relleno-top" src="http://planetpixelemporium.com/" frameborder="0"></iframe>
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide4">
+            <ol>
+                <li class="slide"><img class="slide" src="images/slide2.png" alt=""></li>
+                <li class="slide"><img class="slide" src="images/slide3.png" alt=""></li>
+                <li class="slide"><img class="slide" src="images/slide4.png" alt=""></li>
+            </ol>
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide5">
+            <h2>Escena básica</h2>
+            <iframe class="relleno-top" src="iframes/escenaBasica.html" frameborder="0"></iframe>
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide6">
+            <h2>Sombras</h2>
+            <iframe class="relleno-top" src="iframes/esferaPlano.html" frameborder="0" scrolling="no"></iframe>
+            <pre class="slide"><code> 
+function crearRenderer() {
+renderer.shadowMap.enabled = true;   
+}
+function crearPlano() {
+plano.receiveShadow = true; 
+}
+function crearEsfera() {
+  esfera.castShadow = true;
+}
+function crearLuz() {
+  var lugarLuz = new THREE.SpotLight(0xffffff);
+  lugarLuz.shadowCameraNear = 20;
+  lugarLuz.shadowCameraFar = 50;
+  lugarLuz.castShadow = true;
+}
+
+				</code></pre>
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide7">
+            <h2>Texturizado</h2>
+
+            <iframe class="relleno-top" src="iframes/texturizado.html" frameborder="0" scrolling="no"></iframe>
+
+
+            <pre class="slide"><code> 
+function crearTierra(){
+var tierraGeometria = new THREE.SphereGeometry(10,100,100);
+var tierraMaterial = crearMaterialTierra();
+var tierra = new THREE.Mesh(tierraGeometria, tierraMaterial);
+tierra.name = 'tierra';
+tierra.castShadow = true;
+tierra.position.y = 5;
+escena.add(tierra);
+}
+
+function crearMaterialTierra(){
+var tierraTextura = new THREE.Texture();  
+var loader = new THREE.ImageLoader();  
+loader.load('texturas/tierra.jpg', function (image){
+tierraTextura.image = image;  
+tierraTextura.needsUpdate = true; 
+}); //la funcion callback recibe un parametro que es la imagen
+tierraMaterial = new THREE.MeshBasicMaterial();
+tierraMaterial.map = tierraTextura; 
+return tierraMaterial;
+}
+crearTierra();
+				</code></pre>
+
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide8">
+            <h2>Cargar texturas</h2>
+            <img src="images/slide5.png" alt="">
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide8">
+            <h2>Texturas Normales</h2>
+            <img src="images/normales.png" alt="">
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide8">
+            <h2>Texturas Especulares</h2>
+            <img src="images/especulares.png" alt="">
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide8">
+            <h2>Sentencias</h2>
+
+            <pre class="slide"><code> 
+function crearTierra(){
+var tierraGeometria = new THREE.SphereGeometry(10,100,100);
+var tierraMaterial = crearMaterialTierra();
+var tierra = new THREE.Mesh(tierraGeometria, tierraMaterial);
+tierra.name = 'tierra';
+tierra.castShadow = true;
+tierra.position.y = 5;
+escena.add(tierra);
+} 
+ </code></pre>
+            <pre class="slide"><code> 
+function crearMaterialTierra(){
+var tierraTextura = new THREE.Texture();  
+var loader = new THREE.ImageLoader(); 
+loader.load('texturas/tierra2.jpg', function (image){
+tierraTextura.image = image; 
+tierraTextura.needsUpdate = true; 
+}); 
+
+var normalTextura = new THREE.Texture(); //<-----
+var loader = new THREE.ImageLoader(); 
+loader.load('texturas/tierranormal.jpg', function(image){
+normalTextura.image = image;  //<-----
+normalTextura.needsUpdate = true; 
+});  
+
+var especularTextura = new THREE.Texture();
+var loader = new THREE.ImageLoader();
+loader.load('texturas/tierraespecular.jpg', function(image){
+especularTextura.image = image; //<-----
+especularTextura.needsUpdate = true; //<-----
+});
+
+tierraMaterial = new THREE.MeshPhongMaterial();
+tierraMaterial.map = tierraTextura;  
+
+tierraMaterial.normalMap = normalTextura ;
+tierraMaterial.normalScale = new THREE.Vector2( 0.7, 0.7 );
+tierraMaterial.especularMap = especularTextura;
+tierraMaterial.specular = new THREE.Color(0x262626);
+return tierraMaterial;
+}
+ </code></pre>
+            <pre class="slide"><code> 
+function crearLuz() {
+var luzDireccional = new THREE.DirectionalLight(0xffffff,1);
+luzDireccional.position.set(100,100,-50);
+luzDireccional.name = "luz direccional";
+escena.add(luzDireccional);
+var luzAmbiental = new THREE.AmbientLight(0x111111);
+escena.add(luzAmbiental);
+}
+ </code></pre>
+
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide8">
+            <h2>Resultado</h2>
+            <iframe class="relleno-top" src="iframes/texturizado2.html" frameborder="0" scrolling="no"></iframe>
+
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------- -->
+        <section class="slide" id="slide8">
+            <h2>Resultado 2</h2>
+            <iframe class="relleno-top" src="iframes/texturizado3.html" frameborder="0" scrolling="no"></iframe>
+            <pre class="slide"><code> 
+function crearNubes (){
+var esferaGeometria = new THREE.SphereGeometry(10.1,50,50);
+var nubeTextura = new THREE.Texture();
+var loader = new THREE.ImageLoader();
+loader.load('texturas/nubes.png', function(image){
+nubeTextura.image = image ;
+nubeTextura.needsUpdate = true ;
+});
+var nubeMaterial = new THREE.MeshBasicMaterial();
+nubeMaterial.map = nubeTextura ;
+nubeMaterial.transparent = true ;
+var nube = new THREE.Mesh(esferaGeometria,nubeMaterial);
+nube.name = 'nubes';
+nube.position.y = 5;
+escena.add(nube);
+}
+ </code></pre>
+        </section>
+        <section class="slide" id="slide8">
+            <h2>Animación ?</h2>
+            <iframe class="relleno-top" src="iframes/animacion.html" frameborder="0" scrolling="no"></iframe>
+
+        </section>
+        <!-- ---------------------------------------------------------- -->
+        <div aria-role="navigation">
+            <a href="#" class="deck-prev-link" title="Previous">&lsaquo;</a>
+            <a href="#" class="deck-next-link" title="Next">&rsaquo;</a>
+        </div>
+        <!-- deck.status snippet -->
+        <p class="deck-status" aria-role="status">
+            <span class="deck-status-current"></span>
+            <span class="deck-status-total"></span>
+        </p>
+        <!-- deck.goto snippet -->
+        <form action="." method="get" class="goto-form">
+            <label for="goto-slide">Go to slide:</label>
+            <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+            <datalist id="goto-datalist"></datalist>
+            <input type="submit" value="Go">
+        </form>
+        <!-- End extension snippets. -->
+    </div>
+    <script src="deck/jquery.min.js"></script>
+    <script src="deck/core/deck.core.js"></script>
+    <script src="deck/extensions/menu/deck.menu.js"></script>
+    <script src="deck/extensions/goto/deck.goto.js"></script>
+    <script src="deck/extensions/status/deck.status.js"></script>
+    <script src="deck/extensions/navigation/deck.navigation.js"></script>
+    <script src="deck/extensions/scale/deck.scale.js"></script>
+    <!-- -- -->
+    <script src="js/highlight/highlight.pack.js"></script>
+    <script>
+        $(function() {
+            hljs.initHighlightingOnLoad();
+            $.deck('.slide');
+        });
+    </script>
+</body>
+
+</html>

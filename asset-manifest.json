@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/compgraf/static/css/main.582f3c01.chunk.css",
+    "main.js": "/compgraf/static/js/main.3fd4851f.chunk.js",
+    "main.js.map": "/compgraf/static/js/main.3fd4851f.chunk.js.map",
+    "runtime-main.js": "/compgraf/static/js/runtime-main.1b436f47.js",
+    "runtime-main.js.map": "/compgraf/static/js/runtime-main.1b436f47.js.map",
+    "static/js/2.82cf2c0e.chunk.js": "/compgraf/static/js/2.82cf2c0e.chunk.js",
+    "static/js/2.82cf2c0e.chunk.js.map": "/compgraf/static/js/2.82cf2c0e.chunk.js.map",
+    "index.html": "/compgraf/index.html",
+    "precache-manifest.bfbe1238d1475b855ecc2bd6962906ff.js": "/compgraf/precache-manifest.bfbe1238d1475b855ecc2bd6962906ff.js",
+    "service-worker.js": "/compgraf/service-worker.js",
+    "static/css/main.582f3c01.chunk.css.map": "/compgraf/static/css/main.582f3c01.chunk.css.map",
+    "static/media/logo.svg": "/compgraf/static/media/logo.25bf045c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1b436f47.js",
+    "static/js/2.82cf2c0e.chunk.js",
+    "static/css/main.582f3c01.chunk.css",
+    "static/js/main.3fd4851f.chunk.js"
+  ]
+}

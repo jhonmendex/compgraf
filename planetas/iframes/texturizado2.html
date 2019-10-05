@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Escena Basica</title>
+    <link rel="stylesheet" href="../css/custom.css">
+    <script src="three/three.js"></script>
+    <link rel="stylesheet" href="../js/highlight/styles/monokai-sublime.css">
+</head>
+
+<body class="body-slides">
+    <script src="jquery.js"></script>
+    <script src="three/OrbitControls.js"></script>
+    <script src="../js/highlight/highlight.pack.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+        var escena;
+        //crea un ambiente de gráficos
+        var camara;
+        //muestra la posición de un objeto determinado
+        var renderer;
+        var controlCamara;
+        //dibuja los pixeles en pantalla
+        //funcion de configuracion del renderizado
+        function crearRenderer() {
+            renderer = new THREE.WebGLRenderer({
+                alpha: true,
+                antialias: true
+            });
+            renderer.setClearColor(0x000000, 0.5);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            //decirle al renderer que habilite el manejo de sombras
+        }
+
+        function crearCamara() {
+            camara = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camara.position.x = 0;
+            camara.position.y = 32;
+            camara.position.z = 32;
+            camara.name = 'camara';
+            camara.lookAt(escena.position);
+            controlCamara = new THREE.OrbitControls(camara);
+            // ubicar la camara apuntando al centro del objeto
+        }
+
+
+        function crearTierra() {
+            var tierraGeometria = new THREE.SphereGeometry(10, 100, 100);
+            var tierraMaterial = crearMaterialTierra();
+            var tierra = new THREE.Mesh(tierraGeometria, tierraMaterial);
+            tierra.name = 'tierra';
+            tierra.castShadow = true;
+            tierra.position.y = 5;
+            escena.add(tierra);
+        }
+
+        function crearMaterialTierra() {
+            var tierraTextura = new THREE.Texture(); // la nueva version de threejs sugiere primero crear un objeto vacio de la textura;
+            var loader = new THREE.ImageLoader(); // carga imagenes js
+            loader.load('texturas/tierra.jpg', function(image) {
+                tierraTextura.image = image; // una vez se carge la textura en memoria se debe asignar la imagen a la textura
+                tierraTextura.needsUpdate = true; //avisa al render que se requiere actualizar el objeto con textura en la escena
+            }); //la funcion callback recibe un parametro que es la imagen
+
+            var normalTextura = new THREE.Texture(); // la nueva version de threejs sugiere primero crear un objeto vacio de la textura;
+            var loader = new THREE.ImageLoader(); // carga imagenes js
+            loader.load('texturas/tierranormal.jpg', function(image) {
+                normalTextura.image = image; // una vez se carge la textura en memoria se debe asignar la imagen a la textura
+                normalTextura.needsUpdate = true; //avisa al redner que se requiere actualizar el objeto con textura en la escena
+            }); //la funcion callback recibe un parametro que es la imagen
+
+
+            var especularTextura = new THREE.Texture();
+            var loader = new THREE.ImageLoader();
+            loader.load('texturas/tierraespecular.jpg', function(image) {
+                especularTextura.image = image;
+                especularTextura.needsUpdate = true;
+            });
+
+            tierraMaterial = new THREE.MeshPhongMaterial();
+            tierraMaterial.map = tierraTextura; // asigno al maping la textura cargada en la memoria
+
+            tierraMaterial.normalMap = normalTextura;
+            tierraMaterial.normalScale = new THREE.Vector2(0.7, 0.7);
+            tierraMaterial.especularMap = especularTextura;
+            tierraMaterial.specular = new THREE.Color(0x262626);
+            return tierraMaterial;
+        }
+
+        function crearLuz() {
+            var luzDireccional = new THREE.DirectionalLight(0xffffff, 1);
+            luzDireccional.position.set(100, 100, -50);
+            luzDireccional.name = "luz direccional";
+            escena.add(luzDireccional);
+            var luzAmbiental = new THREE.AmbientLight(0x111111);
+            escena.add(luzAmbiental);
+        }
+
+        //funcion de configuración inicial de la escena
+        function init() {
+            escena = new THREE.Scene();
+            crearRenderer();
+            crearCamara();
+            crearLuz();
+            crearTierra();
+
+            document.body.appendChild(renderer.domElement);
+            render();
+        }
+
+        function render() {
+            renderer.render(escena, camara);
+            controlCamara.update();
+            requestAnimationFrame(render);
+        }
+        init();
+    </script>
+</body>
+
+</html>

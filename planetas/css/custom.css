@@ -1,0 +1,21 @@
+ iframe{
+ 	position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+ }
+
+ .body-slides{
+ 	background: url("../images/cream_pixels.png") repeat !important;
+ }
+
+ body .deck-container .slide h1{
+ 	color: #fff !important
+ }
+ .relleno-top{
+ 	padding-top: 12%;
+ }
+ .csstransitions.csstransforms .deck-container:not(.deck-menu) > .slide .slide{
+ 	padding: 0 !important
+ }
