@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c3c317f192bebb608050e31069ad1ef4",
+    "revision": "648dec375d2ccacd1aaa139fe6dc1e38",
     "url": "/compgraf/index.html"
   },
   {
-    "revision": "ead2d4459aa41653d497",
+    "revision": "5c19090c9bdefd8f3f5a",
     "url": "/compgraf/static/css/main.582f3c01.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/compgraf/static/js/2.82cf2c0e.chunk.js"
   },
   {
-    "revision": "ead2d4459aa41653d497",
-    "url": "/compgraf/static/js/main.3fd4851f.chunk.js"
+    "revision": "5c19090c9bdefd8f3f5a",
+    "url": "/compgraf/static/js/main.dff2e49a.chunk.js"
   },
   {
     "revision": "21f80df40e31a11d0039",
